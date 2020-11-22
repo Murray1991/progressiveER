@@ -30,7 +30,7 @@
 
     <build>
 
-        <sourceDirectory></sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
 
         <plugins>
 
