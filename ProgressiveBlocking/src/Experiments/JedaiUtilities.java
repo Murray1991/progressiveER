@@ -1,14 +1,20 @@
 package Experiments;
 
 
-import org.scify.jedai.datamodel.EntityProfile;
+//import org.scify.jedai.datamodel.EntityProfile;
+import DataStructures.EntityProfile;
+import DataStructures.NewEntitySerializationReader;
+import org.scify.jedai.datamodel.IdDuplicates;
+import org.scify.jedai.datareader.AbstractReader;
 import org.scify.jedai.datareader.entityreader.EntitySerializationReader;
 import org.scify.jedai.datareader.groundtruthreader.GtSerializationReader;
 import org.scify.jedai.utilities.datastructures.AbstractDuplicatePropagation;
 import org.scify.jedai.utilities.datastructures.BilateralDuplicatePropagation;
 import org.scify.jedai.utilities.datastructures.UnilateralDuplicatePropagation;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class JedaiUtilities {
 
@@ -49,22 +55,81 @@ public class JedaiUtilities {
             "cddbIdDuplicates"
     };
 
-    public static List<EntityProfile> getEntities(int datasetId, boolean clean) {
+    public static List<DataStructures.EntityProfile> getEntities(int datasetId, boolean clean) {
         String eFile;
         if (clean)
             eFile = mainDirectoryCER + entitiesPathCER[datasetId];
         else
             eFile = mainDirectoryDER + entitiesPathDER[datasetId];
 
-        EntitySerializationReader eReader = new EntitySerializationReader(eFile);
+        NewEntitySerializationReader eReader = new NewEntitySerializationReader(eFile);
+        System.out.println("Returning entities...");
+        return eReader.getEntityProfiles();
+    }
+
+    public static List<DataStructures.EntityProfile> getEntities(String dataset, boolean clean) {
+        String eFile;
+        if (clean)
+            eFile = mainDirectoryCER + dataset;
+        else
+            eFile = mainDirectoryDER + dataset;
+
+        NewEntitySerializationReader eReader = new NewEntitySerializationReader(eFile);
+        System.out.println("Returning entities...");
+        return eReader.getEntityProfiles();
+    }
+
+    public static List<DataStructures.EntityProfile> getEntities(String BASE, String dataset, boolean clean) {
+        String eFile;
+        if (clean)
+            eFile = BASE + dataset;
+        else
+            eFile = BASE + dataset;
+
+        NewEntitySerializationReader eReader = new NewEntitySerializationReader(eFile);
+        System.out.println("Returning entities...");
         return eReader.getEntityProfiles();
     }
 
     public static AbstractDuplicatePropagation getGroundTruth(int datasetId, boolean clean) {
-        String gtFile = clean ? mainGTDirectoryCER + entitiesPathCER[datasetId] :
+        String gtFile = clean ? mainGTDirectoryCER + entitiesPathCER_GT[datasetId] :
                 mainGTDirectoryDER + entitiesPathDER_GT[datasetId];
-        GtSerializationReader gtReader = new GtSerializationReader(gtFile);
 
+        GtSerializationReader gtReader = new GtSerializationReader(gtFile);
+        //Set<IdDuplicates> duplicates = new HashSet<>();
+        //duplicates.addAll( (List) gtReader.loadSerializedObject(gtFile) );
+
+        //Set<IdDuplicates> duplicates = gtReader.getDuplicatePairs(null);
+        if (clean)
+            return new BilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
+        else
+            return new UnilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
+    }
+
+    public static AbstractDuplicatePropagation getGroundTruth(String dataset, boolean clean) {
+        String gtFile = clean ? mainGTDirectoryCER + dataset :
+                mainGTDirectoryDER + dataset;
+
+        GtSerializationReader gtReader = new GtSerializationReader(gtFile);
+        //Set<IdDuplicates> duplicates = new HashSet<>();
+        //duplicates.addAll( (List) gtReader.loadSerializedObject(gtFile) );
+
+        //Set<IdDuplicates> duplicates = gtReader.getDuplicatePairs(null);
+        if (clean)
+            return new BilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
+        else
+            return new UnilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
+    }
+
+    public static AbstractDuplicatePropagation getGroundTruth(String BASE, String dataset, boolean clean) {
+        String gtFile = clean ? BASE + dataset :
+                BASE + dataset;
+
+        GtSerializationReader gtReader = new GtSerializationReader(gtFile);
+        //Set<IdDuplicates> duplicates = new HashSet<>();
+        //duplicates.addAll( (List) gtReader.loadSerializedObject(gtFile) );
+
+        //Set<IdDuplicates> duplicates = gtReader.getDuplicatePairs(null);
         if (clean)
             return new BilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
         else

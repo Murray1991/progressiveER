@@ -34,6 +34,13 @@ public class EntityProfile implements Serializable {
         attributes = new HashSet();
     }
 
+    public EntityProfile(org.scify.jedai.datamodel.EntityProfile e) {
+        this(e.getEntityUrl());
+        for (org.scify.jedai.datamodel.Attribute a : e.getAttributes()) {
+            this.addAttribute(a.getName(), a.getValue());
+        }
+    }
+
     public void addAttribute(String propertyName, String propertyValue) {
         attributes.add(new Attribute(propertyName, propertyValue));
     }

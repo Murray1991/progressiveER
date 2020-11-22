@@ -103,6 +103,11 @@ public class CepCnpEntities extends CepCnp implements Iterator<Comparison>, Abst
     /*This processArcsEntity avoid to check entityCompared[neighbor] == true*/
     @Override
     protected void processArcsEntity(int entityId) {
+
+        int kk = (int) (10 * Math.max(1, blockAssingments / noOfEntities));
+        /*kk = noOfEntities;*/
+        topKperEntity = MinMaxPriorityQueue.orderedBy(new InverseMetablockingComparator()).maximumSize(kk).create();
+
         validEntities.clear();
         final int[] associatedBlocks = entityIndex.getEntityBlocks(entityId, 0);
         if (associatedBlocks.length == 0) {
