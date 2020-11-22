@@ -18,6 +18,12 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+
+        <repository>
+            <id>lib-dir-repo</id>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
+
 <!--        <repository>-->
 <!--            <snapshots>-->
 <!--                <enabled>false</enabled>-->
@@ -87,7 +93,127 @@
             <version>master-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>weka</groupId>
+            <artifactId>weka</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/weka.jar</systemPath>
+        </dependency>
 
+        <dependency>
+            <groupId>sentencesplitter</groupId>
+            <artifactId>sentencesplitter</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/SentenceSplitter.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>lucene-core</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/lucene-core-4.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>lucene-common</groupId>
+            <artifactId>lucene-common</artifactId>
+            <version>4.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/lucene-analyzers-common-4.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>openjgraph</groupId>
+            <artifactId>openjgraph</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/OpenJGraph.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>secondstring-20120620</groupId>
+            <artifactId>secondstring-20120620</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/secondstring-20120620.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jinsect</groupId>
+            <artifactId>jinsect</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/JInsect.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jgrapht-core</groupId>
+            <artifactId>jgrapht-core</artifactId>
+            <version>0.9.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/jgrapht-core-0.9.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxws-api0</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/jaxws-api.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxb-api</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/jaxb-api.jar</systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>java-string-similarity</groupId>
+            <artifactId>java-string-similarity</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/java-string-similarity-0.23.jar</systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>java-lsh</groupId>
+            <artifactId>java-lsh</artifactId>
+            <version>0.10</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/java-lsh-0.10-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/guava-18.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/gson-2.8.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/commons-codec-1.10.jar</systemPath>
+        </dependency>
     </dependencies>
 
 

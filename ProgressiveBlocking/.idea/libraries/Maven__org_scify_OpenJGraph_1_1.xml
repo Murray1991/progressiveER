@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.scify:OpenJGraph:1.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/scify/OpenJGraph/1.1/OpenJGraph-1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/scify/OpenJGraph/1.1/OpenJGraph-1.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/scify/OpenJGraph/1.1/OpenJGraph-1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
