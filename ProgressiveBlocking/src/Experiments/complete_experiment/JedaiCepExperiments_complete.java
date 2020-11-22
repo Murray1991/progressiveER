@@ -69,6 +69,9 @@ public class JedaiCepExperiments_complete {
 
     public static void main(String[] args) {
 
+        double maxMemory = (double) (Runtime.getRuntime().maxMemory() / Math.pow(10, 6));
+        System.out.println("Max memory: " + maxMemory + "} MB");
+
         String BASE = args[0];
         String D1 = args[1];
         String D2 = args[2];
