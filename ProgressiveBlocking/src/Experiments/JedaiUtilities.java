@@ -3,6 +3,7 @@ package Experiments;
 
 //import org.scify.jedai.datamodel.EntityProfile;
 import DataStructures.EntityProfile;
+import DataStructures.GtSerializationReaderPartial;
 import DataStructures.NewEntitySerializationReader;
 import org.scify.jedai.datamodel.IdDuplicates;
 import org.scify.jedai.datareader.AbstractReader;
@@ -130,6 +131,18 @@ public class JedaiUtilities {
         //duplicates.addAll( (List) gtReader.loadSerializedObject(gtFile) );
 
         //Set<IdDuplicates> duplicates = gtReader.getDuplicatePairs(null);
+        if (clean)
+            return new BilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
+        else
+            return new UnilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
+    }
+
+    public static AbstractDuplicatePropagation getGroundTruth(String BASE, String dataset, boolean clean, int limitD1, int limitD2) {
+        String gtFile = clean ? BASE + dataset :
+                BASE + dataset;
+
+        GtSerializationReader gtReader = new GtSerializationReaderPartial(gtFile, limitD1, limitD2);
+
         if (clean)
             return new BilateralDuplicatePropagation(gtReader.getDuplicatePairs(null));
         else

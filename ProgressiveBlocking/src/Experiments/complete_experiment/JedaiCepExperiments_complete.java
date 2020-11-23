@@ -11,6 +11,7 @@ package Experiments.complete_experiment;
 
 import BlockBuilding.MemoryBased.TokenBlocking;
 import BlockBuilding.Progressive.ProgressiveMetaBlocking.AbstractProgressiveMetaBlocking;
+import BlockBuilding.Progressive.ProgressiveMetaBlocking.ProgressiveCardinalityEdgePruning;
 import BlockBuilding.Progressive.SortedEntities.CepCnpEntities;
 import BlockBuilding.Progressive.SortedEntities.EntityFiltering;
 import BlockProcessing.BlockRefinement.BlockFiltering;
@@ -77,6 +78,7 @@ public class JedaiCepExperiments_complete {
         String D2 = args[2];
         String GT = args[3];
         Integer FRACTION = Integer.parseInt(args[4]);
+        Integer idxMethod = Integer.parseInt(args[5]); // 1: EntityFiltering, else: CepCnpEntities
 
         int DATASET = 0;
 
@@ -106,6 +108,18 @@ public class JedaiCepExperiments_complete {
         profiles1 = JedaiUtilities.getEntities(BASE, D1, true);
         profiles2 = JedaiUtilities.getEntities(BASE, D2, true);
 
+        int limitD1 = profiles1.size()/FRACTION;
+        profiles1 = profiles1.subList(0, limitD1);
+
+        int limitD2 = profiles2.size()/FRACTION;
+        profiles2 = profiles2.subList(0, limitD2);
+
+        System.out.println("D1 size: " + profiles1.size());
+        System.out.println("D2 size: " + profiles2.size());
+
+        adp = JedaiUtilities.getGroundTruth(BASE, GT, true, limitD1, limitD2);
+        double duplicatesSize = (double) adp.getExistingDuplicates();
+        System.out.println("NUMBER OF DUPLICATES: " + duplicatesSize);
 
         String name = "";
         System.out.println("\n\nCurrent weighting scheme\t:\t");
@@ -171,8 +185,12 @@ public class JedaiCepExperiments_complete {
         List<AbstractProgressiveMetaBlocking> progressive_methods = new ArrayList<>();
 
         for (WeightingScheme ws : schemes) {
-            //progressive_methods.add(new CepCnpEntities(ws, CLEAN ? profiles1.size() + profiles2.size() : profiles1.size()));
-            progressive_methods.add(new EntityFiltering(ws, blocks, profiles1.size()+profiles2.size()));
+            if (idxMethod == 1) {
+                progressive_methods.add(new EntityFiltering(ws, blocks, profiles1.size()+profiles2.size()));
+            } else {
+                progressive_methods.add(new CepCnpEntities(ws, CLEAN ? profiles1.size() + profiles2.size() : profiles1.size()));
+            }
+
             //progressive_methods.add(new ProgressiveCardinalityEdgePruning(ws));
             /*progressive_methods.add(new CepCnp(ws));
             progressive_methods.add(new CepBlockScheduling(ws));
@@ -183,7 +201,7 @@ public class JedaiCepExperiments_complete {
         for (AbstractProgressiveMetaBlocking pm : progressive_methods) {
 
             List<AbstractBlock> blocks_tmp = new ArrayList<>(blocks);
-            adp = JedaiUtilities.getGroundTruth(BASE, GT, true);
+            System.out.println("Prioritizer name: "+  pm.getName());
 //            adp_tmp = JedaiUtilities.getGroundTruth(0, true);
 
 //                if (args.length > 0) {
@@ -251,12 +269,8 @@ public class JedaiCepExperiments_complete {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            
 
             Duration timeInstant = Duration.between(start, Instant.now());
-
-            double duplicatesSize = (double) adp.getExistingDuplicates();
-            System.out.println("NUMBER OF DUPLICATES: " + duplicatesSize);
 
             Set<IdDuplicates> duplicates = adp.getDuplicates();
 
