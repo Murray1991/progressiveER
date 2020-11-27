@@ -17,9 +17,11 @@ VMSIZE=-Xmx40G
 #java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 1 1
 
 # This need to be executed
-java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 4 1
+#java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 4 1
 
 # CepEntities
-java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 4 2
-java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 1 2
+#java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 4 2
+#java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 1 2
 
+java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 1 1
+java $VMSIZE -cp target/progressiveER-1.0-jar-with-dependencies.jar Experiments.complete_experiment.JedaiCepExperiments_complete $BASE $D1 $D2 $GT 1 2
