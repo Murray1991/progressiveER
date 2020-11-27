@@ -169,6 +169,7 @@ public class CepExperiments_complete {
 
             for (WeightingScheme ws : schemes) {
                 progressive_methods.add(new ProgressiveCardinalityEdgePruning(ws));
+                progressive_methods.add(new CepBlockScheduling(ws));
                 /*progressive_methods.add(new CepCnp(ws));
                 progressive_methods.add(new CepBlockScheduling(ws));
                 progressive_methods.add(new CepCnpEntities(ws, CLEAN ? profiles[0].size() + profiles[1].size() : profiles[0].size()));*/

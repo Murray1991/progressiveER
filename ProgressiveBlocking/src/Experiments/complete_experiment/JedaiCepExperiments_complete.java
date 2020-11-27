@@ -136,15 +136,15 @@ public class JedaiCepExperiments_complete {
 
         List<AbstractBlock> blocks = tb.buildBlocks();
 
-        double SMOOTH_FACTOR = CLEAN ? 1.005 : 1.015;
-        if (!CLEAN && DATASET == 0) {
-            SMOOTH_FACTOR = 1.25;
-        } else if (CLEAN && DATASET == 5) {
-            SMOOTH_FACTOR = 1.0;
-        }
-        if (SCHEMA) {
-            SMOOTH_FACTOR = 1.25;
-        }
+        double SMOOTH_FACTOR = 1.00; //CLEAN ? 1.005 : 1.015;
+//        if (!CLEAN && DATASET == 0) {
+//            SMOOTH_FACTOR = 1.25;
+//        } else if (CLEAN && DATASET == 5) {
+//            SMOOTH_FACTOR = 1.0;
+//        }
+//        if (SCHEMA) {
+//            SMOOTH_FACTOR = 1.25;
+//        }
 
         ComparisonsBasedBlockPurging cbbp = new ComparisonsBasedBlockPurging(SMOOTH_FACTOR);
         cbbp.applyProcessing(blocks);
