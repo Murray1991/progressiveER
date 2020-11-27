@@ -53,7 +53,7 @@ public class JedaiCepExperiments_complete {
      * First run completed cannot finish (pCEP + ARCS)
      */
     //private static WeightingScheme[] schemes = new WeightingScheme[]{WeightingScheme.CBS};
-    private static WeightingScheme[] schemes = new WeightingScheme[]{WeightingScheme.ARCS};
+    private static WeightingScheme[] schemes = new WeightingScheme[]{WeightingScheme.CBS};
 
     private static double RESOLUTION = 0.02;
     private static String FILE_OUT = "pmb_clean_2017_03_09.json";
